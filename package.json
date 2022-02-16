@@ -1,0 +1,30 @@
+{
+  "name": "wetube-practice",
+  "version": "1.0.0",
+  "description": "try to practice wetube by  myself",
+  "main": "init.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node init.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlaclghks123/wetube-practice.git"
+  },
+  "author": "chiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rlaclghks123/wetube-practice/issues"
+  },
+  "homepage": "https://github.com/rlaclghks123/wetube-practice#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.3",
+    "nodemon": "^2.0.15",
+    "@babel/core": "^7.17.4",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11"
+  }
+}
