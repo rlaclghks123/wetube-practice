@@ -1,4 +1,7 @@
 extends base
+include mixins/video 
 
 block content 
-    h1 This is Home
+
+    each video in videos    
+        +video(video)
