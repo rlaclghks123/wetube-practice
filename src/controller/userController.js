@@ -1,21 +1,21 @@
 export const home = (req, res) => {
-    return res.send("home");
+    return res.render("home");
 }
 
 export const join = (req, res) => {
-    return res.send("join");
+    return res.render("join");
 }
 
 export const login = (req, res) => {
-    return res.send("login");
+    return res.render("login");
 }
 
 export const logout = (req, res) => {
-    return res.send("logout");
+    return res.render("logout");
 }
 export const userEdit = (req, res) => {
-    return res.send("userEdit");
+    return res.render("userEdit");
 }
 export const userProfile = (req, res) => {
-    return res.send("userProfile");
+    return res.render("userProfile");
 }

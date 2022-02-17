@@ -18,7 +18,8 @@
   "homepage": "https://github.com/rlaclghks123/wetube-practice#readme",
   "dependencies": {
     "express": "^4.17.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.3",

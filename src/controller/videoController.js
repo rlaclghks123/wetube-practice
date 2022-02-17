@@ -1,12 +1,12 @@
 export const search = (req, res) => {
-    return res.send("search");
+    return res.render("search");
 }
 export const videoEdit = (req, res) => {
-    return res.send("videoEdit");
+    return res.render("videoEdit");
 }
 export const videoUpload = (req, res) => {
-    return res.send("videoUpload");
+    return res.render("videoUpload");
 }
 export const videoProfile = (req, res) => {
-    return res.send("videoProfile");
+    return res.render("videoProfile");
 }
