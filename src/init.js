@@ -1,5 +1,6 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import "./db";
+import "./models/Video";
 import morgan from "morgan";
 import globalRouter from "./router/globalRouter";
 import userRouter from "./router/userRouter";
