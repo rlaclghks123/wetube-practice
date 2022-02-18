@@ -1,5 +1,9 @@
 mixin video(video)
-    ul
-        li=video.title
-        li=video.color
-        li=video.id
+
+    div
+        h2
+            a(href=`/videos/${video.id}`)=video.id
+
+        ul
+            li=video.title
+            li=video.color

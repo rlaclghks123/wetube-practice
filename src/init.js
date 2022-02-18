@@ -1,4 +1,5 @@
 import express from "express";
+import "./db";
 import morgan from "morgan";
 import globalRouter from "./router/globalRouter";
 import userRouter from "./router/userRouter";
