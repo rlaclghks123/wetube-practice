@@ -24,10 +24,16 @@ export const watch = (req, res) => {
     const video = videos[id - 1];
     return res.render("watch", { pageTitle: "watch", video });
 }
-export const videoEdit = (req, res) => {
+export const getVideoEdit = (req, res) => {
     const { id } = req.params;
     const video = videos[id - 1];
     return res.render("videoEdit", { pageTitle: "VideoEdit", video });
+}
+export const postVideoEdit = (req, res) => {
+    const { id } = req.params;
+    const { title } = req.body;
+    videos[id - 1].title = title;
+    return res.redirect(`/videos/${id}`);
 }
 export const videoUpload = (req, res) => {
     return res.render("videoUpload", { pageTitle: "VideoUpload" });

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import "./db";
 import morgan from "morgan";
 import globalRouter from "./router/globalRouter";
@@ -18,11 +18,15 @@ const handleListen = () => {
 }
 app.listen(PORT, handleListen);
 
+// setting
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 
+// middle ware
 app.use(logger);
+app.use(express.urlencoded({ extended: true }));
 
+// Router
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/videos", videoRouter);
