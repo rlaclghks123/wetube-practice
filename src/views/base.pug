@@ -6,7 +6,12 @@ html(lang="ko")
     body 
         header 
             h1 This is #{pageTitle}     
-            a(href="/") home
+            nav
+                ul 
+                    li
+                        a(href="/") home
+                    li
+                        a(href="/videos/upload") upload Video    
         main 
             block content
 
