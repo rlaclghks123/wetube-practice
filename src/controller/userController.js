@@ -1,26 +1,5 @@
 
-const videos = [{
-    title: "apple",
-    color: "red",
-    id: 1,
-},
-{
-    title: "banana",
-    color: "yellow",
-    id: 2,
-},
-{
-    title: "orange",
-    color: "orange",
-    id: 3,
-},
-]
 
-
-export const home = (req, res) => {
-
-    return res.render("home", { pageTitle: "Home", videos });
-}
 
 export const join = (req, res) => {
     return res.render("join", { pageTitle: "Join" });

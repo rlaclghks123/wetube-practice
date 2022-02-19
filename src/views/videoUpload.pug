@@ -1,4 +1,10 @@
 extends base
 
 block content 
-    h1 This is videoUpload
+    if errorMessage
+        span=errorMessage
+    form(method="POST")
+        input(name="title", placeholder="Title", type="text", requried, join())
+        input(name="description",placeholder="Description",  type="text", requried )
+        input(name="hashtags", placeholder="Hashtags, Sepertate by comma", type="text")
+        input(type="submit", value="upload Video")

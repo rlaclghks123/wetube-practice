@@ -1,42 +1,60 @@
+import Video from "../models/Video";
 
-const videos = [{
-    title: "apple",
-    color: "red",
-    id: 1,
-},
-{
-    title: "banana",
-    color: "yellow",
-    id: 2,
-},
-{
-    title: "orange",
-    color: "orange",
-    id: 3,
-},
-]
+export const home = async (req, res) => {
+    const videos = await Video.find({});
+    return res.render("home", { pageTitle: "Home", videos });
+}
 
-export const search = (req, res) => {
-    return res.render("search", { pageTitle: "Search" });
-}
-export const watch = (req, res) => {
+
+export const watch = async (req, res) => {
     const { id } = req.params;
-    const video = videos[id - 1];
-    return res.render("watch", { pageTitle: "watch", video });
+    const video = await Video.findById(id);
+    console.log(video);
+    if (!video) {
+        return res.render("404", { pageTitle: "Error" });
+    } else {
+        return res.render("watch", { pageTitle: video.title, video });
+    }
 }
-export const getVideoEdit = (req, res) => {
+
+export const getVideoEdit = async (req, res) => {
     const { id } = req.params;
-    const video = videos[id - 1];
-    return res.render("videoEdit", { pageTitle: "VideoEdit", video });
+    const video = await Video.findById(id);
+    if (!video) {
+        return res.render("404", { pageTitle: "Error" });
+    } else {
+        return res.render("videoEdit", { pageTitle: "VideoEdit", video });
+    }
 }
-export const postVideoEdit = (req, res) => {
+export const postVideoEdit = async (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
-    videos[id - 1].title = title;
+    await Video.findByIdAndUpdate(id, title);
     return res.redirect(`/videos/${id}`);
 }
-export const videoUpload = (req, res) => {
+export const getVideoUpload = (req, res) => {
     return res.render("videoUpload", { pageTitle: "VideoUpload" });
+}
+
+export const postVideoUpload = async (req, res) => {
+    const { title, description, hashtags } = req.body;
+    try {
+
+        await Video.create({
+            title,
+            description,
+            hashtags: hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`)),
+            createdAt: Date.now(),
+            meta: {
+                views: 0,
+                rating: 0
+            }
+        });
+        return res.redirect("/");
+    }
+    catch (error) {
+        return res.render("videoUpload", { pageTitle: "Upload Video", errorMessage: error._message });
+    }
 }
 export const videoProfile = (req, res) => {
     return res.render("videoProfile", { pageTitle: "VideoProfile" });
