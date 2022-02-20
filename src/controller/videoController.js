@@ -1,22 +1,33 @@
 import Video from "../models/Video";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+
+
 
 export const home = async (req, res) => {
     const videos = await Video.find({});
     return res.render("home", { pageTitle: "Home", videos });
 }
 
+export const search = async (req, res) => {
+    const { keyword } = req.query;
+    let videos = [];
+    if (keyword) {
+        videos = await Video.find({
+            title: {
+                $regex: new RegExp(keyword, "i")
+            },
+        })
+    };
+    return res.render("search", { pageTitle: "Search", videos });
+}
 
 export const watch = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id);
-    dayjs.extend(relativeTime);
-    const createdAtFromNow = dayjs(video.createdAt).fromNow();
+
     if (!video) {
         return res.render("404", { pageTitle: "Error" });
     } else {
-        return res.render("watch", { pageTitle: video.title, video, createdAtFromNow });
+        return res.render("watch", { pageTitle: video.title, video });
     }
 }
 

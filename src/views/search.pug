@@ -1,4 +1,13 @@
 extends base
-
+include mixins/video
 block content 
-    h1 This is Search
+    form
+        input(type="text", name="keyword", placeholder="Search By Title", requried)
+        labe(for="search")
+        input(id="search", type="submit", value="🔍")
+
+    div 
+        each video in videos 
+            +video(video)
+        else 
+            span Not Found Video
