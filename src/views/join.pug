@@ -1,4 +1,12 @@
 extends base
 
 block content 
-    h1 This is Join
+    if(errorMessage)
+        span=errorMessage
+    form(method="POST")
+        input(type="text" placeholder="Username", required, name="username")
+        input(type="text" placeholder="Email", required, name="email")
+        input(type="text" placeholder="Name", required, name="name")
+        input(type="password" placeholder="Passowrd", required, name="password")
+        input(type="password" placeholder="Passowrd2", required, name="password2")
+        input(type="submit" value="Join")
