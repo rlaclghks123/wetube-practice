@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-mongoose.connect(process.env.DBURL, { useNewUrlParser: true });
+mongoose.connect(process.env.API_KEY, { useNewUrlParser: true });
 
 const db = mongoose.connection
 
