@@ -4,10 +4,16 @@ header
             nav
                 ul 
                     li
-                        a(href="/videos/upload") upload Video  
-                    li
                         a(href="/search") Search  
-                    li
-                        a(href="/join") Join     
-                    li
-                        a(href="/login") Login             
+                    if loggedIn    
+                        li
+                            a(href="/videos/upload") Upload Video  
+                        li
+                            a(href="/logout") Logout    
+                        li 
+                            a()   
+                    else 
+                        li
+                            a(href="/join") Join     
+                        li
+                            a(href="/login") Login             
