@@ -32,7 +32,7 @@ app.use(localMiddleWare);
 
 // Router
 app.use("/", globalRouter);
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
 export default app;
