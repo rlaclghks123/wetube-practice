@@ -106,6 +106,7 @@ export const finishGithubLogin = async (req, res) => {
                 email: emailObj.email,
                 name: userData.name,
                 password: "",
+                socialOnly: true,
             });
         };
         req.session.loggedIn = true;
@@ -118,7 +119,8 @@ export const finishGithubLogin = async (req, res) => {
 
 
 export const logout = (req, res) => {
-    return res.render("logout", { pageTitle: "Logout" });
+    req.session.destroy();
+    return res.redirect("/")
 }
 export const userEdit = (req, res) => {
     return res.render("userEdit", { pageTitle: "UserEdit" });
