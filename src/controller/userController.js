@@ -98,7 +98,7 @@ export const finishGithubLogin = async (req, res) => {
             }
         })).json();
 
-        const emailObj = await userEmail.find((email) => email.primary === true && email.verified === true);
+        const emailObj = userEmail.find((email) => email.primary === true && email.verified === true);
         let user = await User.findOne({ email: emailObj.email });
         if (!user) {
             user = await User.create({
@@ -149,6 +149,36 @@ export const postEdit = async (req, res) => {
     req.session.user = updateUser;
     return res.redirect("/");
 }
+
+
 export const userProfile = (req, res) => {
     return res.render("userProfile", { pageTitle: "UserProfile" });
+}
+
+
+export const getChange_password = (req, res) => {
+    if (req.session.user.socialOnly === true) {
+        return res.redirect("/");
+    }
+}
+
+export const postChange_password = async (req, res) => {
+    const {
+        session: {
+            user: { _id }
+        },
+        body: { oldPassword, newPassword, newPassword2 },
+    } = req;
+    const user = await User.findById(_id);
+    const ok = await bcrypt.compare(oldPassword, user.password);
+    if (!ok) {
+        return res.status(400).render("changePassword", { pageTitle: "Change Password Error", errorMessage: "Old Password was not correct" });
+    }
+
+    if (newPassword != newPassword2) {
+        return res.status(400).render("changePassowrd", { pageTitle: "Change Password Error", errorMessage: "new Password was not correct" });
+    }
+    user.password = newPassword;
+    await user.save();
+    return res.redirect("/users/logout");
 }

@@ -8,5 +8,6 @@ block content
         input(type="text" name="email", placeholder="email", required, value=loggedInUser.email)
         input(type="text" name="name", placeholder="name", required, value=loggedInUser.name)
         input(type="submit" value="Update Edit")
-
+    if !loggedInUser.socialOnly
+        a(href="/users/change_password") Change Password
         

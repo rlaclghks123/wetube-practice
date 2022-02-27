@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 const userSchema = mongoose.Schema({
     username: { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
+    socialOnly: { type: Boolean },
     name: { type: String, required: true },
     password: { type: String },
 });
