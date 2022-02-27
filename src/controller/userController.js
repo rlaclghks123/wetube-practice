@@ -160,6 +160,7 @@ export const getChange_password = (req, res) => {
     if (req.session.user.socialOnly === true) {
         return res.redirect("/");
     }
+    return res.render("changePassword", { pageTitle: "Change Password" });
 }
 
 export const postChange_password = async (req, res) => {
@@ -175,8 +176,8 @@ export const postChange_password = async (req, res) => {
         return res.status(400).render("changePassword", { pageTitle: "Change Password Error", errorMessage: "Old Password was not correct" });
     }
 
-    if (newPassword != newPassword2) {
-        return res.status(400).render("changePassowrd", { pageTitle: "Change Password Error", errorMessage: "new Password was not correct" });
+    if (newPassword !== newPassword2) {
+        return res.status(400).render("changePassword", { pageTitle: "Change Password Error", errorMessage: "new Password was not correct" });
     }
     user.password = newPassword;
     await user.save();
