@@ -29,7 +29,7 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.API_KEY })
 }));
 app.use(localMiddleWare);
-app.use("uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads"))
 
 // Router
 app.use("/", globalRouter);
