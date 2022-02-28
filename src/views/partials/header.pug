@@ -11,7 +11,7 @@ header
                         li
                             a(href="/users/logout") Logout    
                         li 
-                            a(href="/users/edit") Edit User  
+                            a(href=`/users/${loggedInUser._id}`) Profile 
                     else 
                         li
                             a(href="/join") Join     

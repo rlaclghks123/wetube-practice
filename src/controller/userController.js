@@ -106,11 +106,12 @@ export const finishGithubLogin = async (req, res) => {
                 email: emailObj.email,
                 name: userData.name,
                 password: "",
+                avatar_url: userData.avatar_url,
                 socialOnly: true,
             });
         };
         req.session.loggedIn = true;
-        req.session.user = user;
+        req.session.user = user; g
         return res.redirect("/");
     } else {
         return res.redirect("/");
@@ -129,11 +130,12 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
     const {
         session: {
-            user: { _id }
+            user: { _id, avatar_url }
         },
-        body: { username, name, email }
+        body: { username, name, email },
+        file,
     } = req;
-
+    console.log(file);
     const exist = await User.exists({
         $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }]
     });
@@ -141,6 +143,7 @@ export const postEdit = async (req, res) => {
         return res.status(400).render("editUser", { pageTitle: "Edit User", errorMessage: "username/email is already taken" })
     }
     const updateUser = await User.findByIdAndUpdate(_id, {
+        avatar_url: file ? file.path : avatar_url,
         username,
         name,
         email
@@ -151,8 +154,13 @@ export const postEdit = async (req, res) => {
 }
 
 
-export const userProfile = (req, res) => {
-    return res.render("userProfile", { pageTitle: "UserProfile" });
+export const userProfile = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+        return res.status(404).render("404", { pageTitle: "User Profile was not found" });
+    };
+    return res.render("userProfile", { pageTitle: user.name, user });
 }
 
 
