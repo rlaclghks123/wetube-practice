@@ -1,5 +1,5 @@
 import Video from "../models/Video";
-
+import User from "../models/Video";
 
 
 export const home = async (req, res) => {
@@ -22,8 +22,9 @@ export const search = async (req, res) => {
 
 export const watch = async (req, res) => {
     const { id } = req.params;
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate("owner");
 
+    console.log(video.owner);
     if (!video) {
         return res.render("404", { pageTitle: "Error" });
     } else {
@@ -57,6 +58,7 @@ export const getVideoUpload = (req, res) => {
 
 export const postVideoUpload = async (req, res) => {
     const { path } = req.file;
+    const { user: { _id } } = req.session;
     const { title, description, hashtags } = req.body;
 
     try {
@@ -68,7 +70,8 @@ export const postVideoUpload = async (req, res) => {
             meta: {
                 views: 0,
                 rating: 0
-            }
+            },
+            owner: _id
         });
 
         return res.redirect("/");
