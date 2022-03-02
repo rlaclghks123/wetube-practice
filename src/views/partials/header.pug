@@ -11,9 +11,10 @@ header
                         li
                             a(href="/users/logout") Logout    
                         li 
-                            a(href=`/users/${loggedInUser._id}`) Profile 
+                            a(href=`/users/${loggedInUser._id}`) Hello#{loggedInUser.name} 
                     else 
                         li
                             a(href="/join") Join     
                         li
-                            a(href="/login") Login             
+                            a(href="/login") Login      
+                               

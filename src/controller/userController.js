@@ -111,7 +111,7 @@ export const finishGithubLogin = async (req, res) => {
             });
         };
         req.session.loggedIn = true;
-        req.session.user = user; g
+        req.session.user = user;
         return res.redirect("/");
     } else {
         return res.redirect("/");
@@ -135,7 +135,7 @@ export const postEdit = async (req, res) => {
         body: { username, name, email },
         file,
     } = req;
-    console.log(file);
+
     const exist = await User.exists({
         $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }]
     });
@@ -156,7 +156,9 @@ export const postEdit = async (req, res) => {
 
 export const userProfile = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
+
     if (!user) {
         return res.status(404).render("404", { pageTitle: "User Profile was not found" });
     };

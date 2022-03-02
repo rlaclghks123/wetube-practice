@@ -3,7 +3,7 @@ block content
     video(src="/"+video.fileUrl, controls)
     div 
         small uploaded by #{video.owner.name}
-    if String(loggedInUser._id) ===String(video.owner)
+    if String(loggedInUser._id) ===String(video.owner._id)
         a(href=`${video.id}/edit`) Edit &larr;
         br
         a(href=`${video.id}/delete`) Delete &larr;
