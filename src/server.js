@@ -30,6 +30,7 @@ app.use(session({
 }));
 app.use(localMiddleWare);
 app.use("/uploads", express.static("uploads"))
+app.use("/static", express.static("assets"));
 
 // Router
 app.use("/", globalRouter);
