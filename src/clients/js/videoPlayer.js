@@ -1,11 +1,15 @@
+const video = document.querySelector("video");
 const playBtn = document.querySelector("#playBtn");
 const playBtnIcon = playBtn.querySelector("i");
 const currentTime = document.querySelector("#currentTime");
 const totalTime = document.querySelector("#totalTime");
-const mute = document.querySelector("#mute");
-const muteIcon = mute.querySelector("i");
-const video = document.querySelector("video");
+const muteBtn = document.querySelector("#muteBtn");
+const muteIcon = muteBtn.querySelector("i");
+const volumeRange = document.querySelector("#volume");
 
+
+let volumeValue = 0.5;
+video.volume = volumeValue;
 
 const handlePlayBtn = () => {
     if (video.paused) {
@@ -13,8 +17,7 @@ const handlePlayBtn = () => {
     } else {
         video.pause();
     }
-
-    playBtnIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
+    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 }
 
 
@@ -24,7 +27,22 @@ const handleMute = () => {
     } else {
         video.muted = true;
     }
-    muteIcon.className = video.muted ? "fas fa-volume-mute" : "fas fa-volume-off";
+    muteIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
+    volumeRange.value = video.muted ? 0 : volumeValue;
 }
-playBtn.addEventListener("click", handlePlayBtn)
-mute.addEventListener("click", handleMute)
+
+const handleVolumeRange = (event) => {
+    const { target: { value } } = event;
+    if (video.muted) {
+        video.muted = false;
+        muteIcon.classList = "fas fa-volume-mute";
+    }
+
+    volumeValue = value;
+    video.volume = value;
+}
+
+playBtn.addEventListener("click", handlePlayBtn);
+video.addEventListener("click", handlePlayBtn);
+muteBtn.addEventListener("click", handleMute);
+volumeRange.addEventListener("input", handleVolumeRange);
