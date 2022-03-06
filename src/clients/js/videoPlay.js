@@ -7,8 +7,9 @@ const muteBtn = document.querySelector("#muteBtn");
 const muteIcon = muteBtn.querySelector("i");
 const volumeRange = document.querySelector("#volume");
 const timeline = document.querySelector("#timeline");
-
-
+const fullScreenBtn = document.querySelector("#fullScreen");
+const fullScreenBtnIcon = fullScreenBtn.querySelector("i");
+const videoContainer = document.querySelector("#videoContainer");
 
 let volumeValue = 0.5;
 video.volume = volumeValue;
@@ -66,6 +67,17 @@ const handleTimeLineChange = (event) => {
     video.currentTime = value;
 }
 
+const handleFullScreen = () => {
+    const fullScreen = document.fullscreenElement;
+    if (fullScreen) {
+        document.exitFullscreen();
+        fullScreenBtnIcon.classList = "fas fa-expand";
+    } else {
+        videoContainer.requestFullscreen();
+        fullScreenBtnIcon.classList = "fas fa-compress";
+    }
+}
+
 playBtn.addEventListener("click", handlePlayBtn);
 video.addEventListener("click", handlePlayBtn);
 video.addEventListener("loadedmetadata", handleTotalTime);
@@ -73,3 +85,4 @@ video.addEventListener("timeupdate", handleTimeUpdate);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeRange);
 timeline.addEventListener("input", handleTimeLineChange);
+fullScreen.addEventListener("click", handleFullScreen);
