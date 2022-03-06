@@ -20,6 +20,7 @@ const handlePlayBtn = () => {
         video.pause();
     }
     playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
+
 }
 
 
@@ -55,6 +56,9 @@ const handleTotalTime = () => {
 const handleTimeUpdate = () => {
     currentTime.innerText = formatTime(Math.floor(video.currentTime));
     timeline.value = Math.floor(video.currentTime);
+    if (video.currentTime === video.duration) {
+        playBtnIcon.className = "fas fa-redo";
+    }
 }
 
 const handleTimeLineChange = (event) => {

@@ -2,8 +2,8 @@ extends base
 
 block content
     video(src="/"+video.fileUrl)
-    input(type="range", value="0", min="0" )#timeline
     div
+        input(type="range", value="0", min="0" )#timeline
         button#playBtn 
             i.fas.fa-play
         span#currentTime 00:00
