@@ -51,8 +51,14 @@ const handleTotalTime = () => {
     totalTime.innerText = formatTime(video.duration);
 }
 
+const handleCurrentTime = () => {
+    currentTime.innerText = formatTime(Math.floor(video.currentTime));
+
+}
+
 playBtn.addEventListener("click", handlePlayBtn);
 video.addEventListener("click", handlePlayBtn);
 video.addEventListener("loadedmetadata", handleTotalTime);
+video.addEventListener("timeupdate", handleCurrentTime);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeRange);
