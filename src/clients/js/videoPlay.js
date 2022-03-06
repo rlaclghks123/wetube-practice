@@ -7,6 +7,8 @@ const muteBtn = document.querySelector("#muteBtn");
 const muteIcon = muteBtn.querySelector("i");
 const volumeRange = document.querySelector("#volume");
 
+totalTime
+
 
 let volumeValue = 0.5;
 video.volume = volumeValue;
@@ -42,7 +44,15 @@ const handleVolumeRange = (event) => {
     muteIcon.classList = video.volume === 0 ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
+const formatTime = (seconds) => {
+    return new Date(seconds * 1000).toISOString().substr(14, 5);
+}
+const handleTotalTime = () => {
+    totalTime.innerText = formatTime(video.duration);
+}
+
 playBtn.addEventListener("click", handlePlayBtn);
 video.addEventListener("click", handlePlayBtn);
+video.addEventListener("loadedmetadata", handleTotalTime);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeRange);
