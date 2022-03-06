@@ -37,9 +37,9 @@ const handleVolumeRange = (event) => {
         video.muted = false;
         muteIcon.classList = "fas fa-volume-mute";
     }
-
     volumeValue = value;
     video.volume = value;
+    muteIcon.classList = video.volume === 0 ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
 playBtn.addEventListener("click", handlePlayBtn);

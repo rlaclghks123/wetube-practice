@@ -5,7 +5,7 @@ const BASEJS = "./src/clients/js/";
 module.exports = {
     entry: {
         main: BASEJS + "main.js",
-        videoPlayer: BASEJS + "videoPlayer.js",
+        videoPlay: BASEJS + "videoPlay.js",
     },
     mode: "development",
     plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
