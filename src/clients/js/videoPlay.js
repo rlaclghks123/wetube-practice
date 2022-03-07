@@ -10,9 +10,12 @@ const timeline = document.querySelector("#timeline");
 const fullScreenBtn = document.querySelector("#fullScreen");
 const fullScreenBtnIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.querySelector("#videoContainer");
+const videoControls = document.querySelector("#videoControls");
 
 let volumeValue = 0.5;
 video.volume = volumeValue;
+let timeOutControl = null;
+let controlsMouseMovementTimeOut = null;
 
 const handlePlay = () => {
     if (video.paused) {
@@ -76,6 +79,26 @@ const handleFullScreen = () => {
         fullScreenBtnIcon.classList = "fas fa-compress";
     }
 }
+const hideTimeOut = () => {
+    videoControls.classList.remove("showing");
+}
+
+const handleMouseMove = () => {
+    if (timeOutControl) {
+        clearTimeout(timeOutControl);
+        timeOutControl = null;
+    }
+    if (controlsMouseMovementTimeOut) {
+        clearTimeout(controlsMouseMovementTimeOut);
+        controlsMouseMovementTimeOut = null;
+    }
+    videoControls.classList.add("showing");
+    controlsMouseMovementTimeOut = setTimeout(hideTimeOut, 3000);
+}
+
+const handleMouseLeave = () => {
+    timeOutControl = setTimeout(hideTimeOut, 3000);
+}
 
 playBtn.addEventListener("click", handlePlay);
 video.addEventListener("click", handlePlay);
@@ -85,3 +108,5 @@ muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeRange);
 timeline.addEventListener("input", handleTimeLineChange);
 fullScreen.addEventListener("click", handleFullScreen);
+videoContainer.addEventListener("mousemove", handleMouseMove);
+videoContainer.addEventListener("mouseleave", handleMouseLeave);

@@ -1,13 +1,18 @@
+
 video{
     width: 100%;
-  
 }
 
-#videoControls{
-    position:relative;
-    bottom: 60px;
-    width: 100%;
-}
+#videoControls {
+        position:relative;
+        bottom: 60px;
+        width: 100%;
+        opacity: 0;
+        &.showing{
+            opacity: 1;
+        }
+    }
+
 
 #timeline{
     width: 99%;   
