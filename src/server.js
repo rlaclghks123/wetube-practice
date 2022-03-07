@@ -6,6 +6,7 @@ import { localMiddleWare } from "./localMiddleWare"
 import globalRouter from "./router/globalRouter";
 import userRouter from "./router/userRouter";
 import videoRouter from "./router/videoRouter";
+import apiRouter from "./router/apiRouter";
 
 const app = express();
 const logger = morgan("dev");
@@ -36,5 +37,6 @@ app.use("/static", express.static("assets"));
 app.use("/", globalRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
+app.use("/api", apiRouter);
 
 export default app;
