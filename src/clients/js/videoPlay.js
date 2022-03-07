@@ -14,14 +14,13 @@ const videoContainer = document.querySelector("#videoContainer");
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
-const handlePlayBtn = () => {
+const handlePlay = () => {
     if (video.paused) {
         video.play();
     } else {
         video.pause();
     }
     playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
-
 }
 
 
@@ -78,8 +77,8 @@ const handleFullScreen = () => {
     }
 }
 
-playBtn.addEventListener("click", handlePlayBtn);
-video.addEventListener("click", handlePlayBtn);
+playBtn.addEventListener("click", handlePlay);
+video.addEventListener("click", handlePlay);
 video.addEventListener("loadedmetadata", handleTotalTime);
 video.addEventListener("timeupdate", handleTimeUpdate);
 muteBtn.addEventListener("click", handleMute);
