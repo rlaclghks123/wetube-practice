@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         main: BASEJS + "main.js",
         videoPlay: BASEJS + "videoPlay.js",
+        record: BASEJS + "record.js",
     },
     mode: "development",
     plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],

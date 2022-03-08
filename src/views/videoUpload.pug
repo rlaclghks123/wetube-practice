@@ -3,6 +3,9 @@ extends base
 block content 
     if errorMessage
         span=errorMessage
+    div
+        video#preview
+            
     form(method="POST" enctype="multipart/form-data")
         lable(for="video") Video File
         input(name="video", type="file", accept="video/*" required , id="video")
@@ -10,3 +13,5 @@ block content
         input(name="description",placeholder="Description",  type="text", requried )
         input(name="hashtags", placeholder="Hashtags, Sepertate by comma", type="text")
         input(type="submit", value="upload Video")       
+block scripts
+    script(src="/static/js/record.js")     
