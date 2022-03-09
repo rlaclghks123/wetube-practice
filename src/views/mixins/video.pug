@@ -1,6 +1,8 @@
 mixin video(video)
 
-    a(href=`/videos/${video.id}`)=video.title
+    a(href=`/videos/${video.id}`)
+        div    
+            img(id="thumbPic", src=video.thumbUrl, crossorigin)
     div
         h2
         p=video.owner.name

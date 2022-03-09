@@ -10,6 +10,8 @@ block content
     form(method="POST" enctype="multipart/form-data")
         lable(for="video") Video File
         input(name="video", type="file", accept="video/*" required , id="video")
+        lable(for="thumb") Thumb file
+        input(name="thumb", type="file", accept="image/*" required , id="thumb")
         input(name="title", placeholder="Title", type="text", requried, join())
         input(name="description",placeholder="Description",  type="text", requried )
         input(name="hashtags", placeholder="Hashtags, Sepertate by comma", type="text")
