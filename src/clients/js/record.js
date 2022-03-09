@@ -6,7 +6,11 @@ let recorder;
 let videoFile;
 
 const handleDownload = () => {
-
+    const a = document.createElement("a");
+    a.href = videoFile;
+    a.download = "recording.webm";
+    document.body.appendChild(a);
+    a.click();
 }
 
 const handleStart = () => {
