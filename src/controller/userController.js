@@ -50,6 +50,7 @@ export const postLogin = async (req, res) => {
 
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("error", "Not Authorized");
     return res.redirect("/");
 }
 
@@ -120,7 +121,9 @@ export const finishGithubLogin = async (req, res) => {
 
 
 export const logout = (req, res) => {
-    req.session.destroy();
+    req.flash("info", "Bye Bye");
+    // req.session.destroy();
+    req.session.loggedIn = false
     return res.redirect("/")
 }
 
