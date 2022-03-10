@@ -123,32 +123,13 @@ export const registerView = async (req, res) => {
     return res.sendStatus(200);
 }
 
-// export const createComment = async (req, res) => {
-//     const {
-//         session: { user },
-//         body: { text },
-//         params: { id }
-//     } = req;
-
-//     const video = await Video.findById(id);
-//     if (!video) {
-//         return res.sendStatus(404);
-//     }
-//     const comment = await Comment.create({
-//         text,
-//         owner: user._id,
-//         video: id,
-//     });
-//     video.comments.push(comment._id);
-//     video.save();
-//     return res.status(201);
-// }
 export const createComment = async (req, res) => {
     const {
         session: { user },
         body: { text },
-        params: { id },
+        params: { id }
     } = req;
+
     const video = await Video.findById(id);
     if (!video) {
         return res.sendStatus(404);
