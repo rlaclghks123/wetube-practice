@@ -26,5 +26,16 @@ block content
             a(href=`${video.id}/edit`) Edit &larr;
             br
             a(href=`${video.id}/delete`) Delete &larr;
+        if loggedIn   
+            div     
+                form#commentForm
+                    textarea(placeholder="Write a nice comment",max="30", cols="30", rows="10") 
+                    button submit
+        div 
+            ul 
+                each comment in video.comments.reverse() 
+                    li=comment.text   
 block scripts
     script(src="/static/js/videoPlay.js") 
+    if loggedIn
+        script(src="/static/js/comment.js") 
