@@ -23,12 +23,12 @@ export const search = async (req, res) => {
 export const watch = async (req, res) => {
     const { id } = req.params;
     const video = await Video.findById(id).populate("owner").populate("comments");
-
+    const comment = await Comment.findById(id).populate("owner");
 
     if (!video) {
         return res.render("404", { pageTitle: "Error" });
     } else {
-        return res.render("watch", { pageTitle: video.title, video });
+        return res.render("watch", { pageTitle: video.title, video, comment });
     }
 }
 
@@ -141,5 +141,15 @@ export const createComment = async (req, res) => {
     });
     video.comments.push(comment._id);
     video.save();
-    return res.sendStatus(201);
+    return res.status(201).json({ newCommentId: comment._id });
 };
+
+export const deleteComment = async (req, res) => {
+    const commentId = req.body.commentId;
+    const { session: { user } } = req;
+    const comment = await Comment.findById(commentId).populate("owner");
+
+    if (user._id === comment.owner.id) {
+        await Comment.findByIdAndDelete(commentId);
+    }
+}
