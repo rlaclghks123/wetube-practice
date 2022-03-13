@@ -1,5 +1,3 @@
-
-
 const videoContainer = document.querySelector("#videoContainer");
 const form = document.querySelector("#commentForm");
 
