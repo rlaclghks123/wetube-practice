@@ -4,6 +4,8 @@
   "description": "try to practice wetube by  myself",
   "main": "init.js",
   "scripts": {
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack --mode=development -w"
   },

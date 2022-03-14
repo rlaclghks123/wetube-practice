@@ -9,7 +9,7 @@ module.exports = {
         record: BASEJS + "record.js",
         commentSection: BASEJS + "commentSection.js",
     },
-    mode: "development",
+
     plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
     output: {
         filename: "js/[name].js",
